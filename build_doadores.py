@@ -734,6 +734,8 @@ html = r"""<!doctype html>
   .brand { display:flex; align-items:baseline; gap:12px; margin:0 4px 14px; }
   .brand b { color:var(--blue); font-weight:800; font-size:15px; letter-spacing:-0.2px; }
   .brand span { color:var(--muted); font-size:14px; }
+  .brand a { margin-left:auto; color:var(--blue); font-size:14px; font-weight:700; text-decoration:none; }
+  .brand a:hover { text-decoration:underline; }
   .card { background:#fff; border-radius:12px; box-shadow:0px 3.54px 13.88px 2.78px rgba(0,0,0,0.18); overflow:hidden; }
   .head { padding: 22px 22px 0; }
   h1 { margin:0; font-size:30px; line-height:1.15; font-weight:700; letter-spacing:-0.3px; }
@@ -867,7 +869,7 @@ html = r"""<!doctype html>
 </head>
 <body>
 <div class="page">
-  <p class="brand"><b>DecideBrasil</b><span>Eleições 2026 · Presidente</span></p>
+  <p class="brand"><b>DecideBrasil</b><span>Eleições 2026 · Presidente</span><a href="lista.html">A lista</a></p>
   <article class="card">
     <header class="head">
       <h1>O PT declara R$ 105 mi para Lula.<br>No PL, pessoas físicas entram com R$ 21 mi.</h1>

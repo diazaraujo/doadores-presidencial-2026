@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>A lista — arrecadação presidencial 2026 · DecideBrasil</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #f0f0f0;
+    --card: #fff;
+    --text: #3c3c3c;
+    --muted: #8a8a8a;
+    --line: #eeeef0;
+    --blue: #2150e8;
+    --edge: #e0e0e0;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Hanken Grotesk", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page { max-width: 1180px; margin: 0 auto; padding: 28px 20px 48px; }
+  .brand {
+    display: flex; align-items: baseline; gap: 12px; margin: 0 4px 14px;
+  }
+  .brand b { color: var(--blue); font-weight: 800; font-size: 15px; letter-spacing: -0.2px; }
+  .brand span { color: var(--muted); font-size: 14px; }
+  .brand a { margin-left: auto; color: var(--blue); font-size: 14px; font-weight: 700; text-decoration: none; }
+  .brand a:hover { text-decoration: underline; }
+  .card {
+    background: var(--card);
+    border-radius: 12px;
+    box-shadow: 0px 3.54px 13.88px 2.78px rgba(0,0,0,0.18);
+    overflow: hidden;
+  }
+  .head {
+    display: flex; align-items: flex-start; justify-content: space-between; gap: 20px;
+    padding: 22px 22px 6px;
+  }
+  h1 {
+    margin: 0;
+    font-size: 30px; line-height: 1.15; font-weight: 700; letter-spacing: -0.3px;
+  }
+  .sub { margin: 6px 0 0; max-width: 640px; color: var(--muted); font-size: 15px; line-height: 1.35; }
+  .tools { display: flex; align-items: center; gap: 10px; flex-shrink: 0; padding-top: 4px; }
+  .sort {
+    display: flex; align-items: center; gap: 8px;
+    height: 36px; padding: 0 6px 0 12px;
+    border: 1px solid var(--edge); border-radius: 999px; background: #fff;
+  }
+  .sort span { color: var(--muted); font-size: 13px; font-weight: 500; }
+  select, input[type="search"] {
+    font-family: inherit; color: var(--text); background: #fff; border: 0; outline: none;
+  }
+  select { font-size: 14px; font-weight: 600; padding-right: 4px; }
+  .dir {
+    width: 26px; height: 26px; border: 0; border-radius: 999px; background: var(--bg);
+    color: var(--text); font-size: 14px; cursor: pointer;
+  }
+  .dir[aria-pressed="true"] { background: var(--blue); color: #fff; }
+  input[type="search"] {
+    height: 36px; width: 180px; padding: 0 14px;
+    border: 1px solid var(--edge); border-radius: 999px; font-size: 14px;
+  }
+  .rows { padding-bottom: 6px; }
+  .row {
+    display: grid;
+    grid-template-columns: 36px 76px minmax(190px, 1.05fr) minmax(220px, 1.25fr) 158px 158px;
+    gap: 8px 14px; align-items: center;
+    padding: 16px 22px;
+    border-top: 1px solid var(--line);
+  }
+  .rank {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-weight: 500; font-size: 18px; color: var(--muted);
+  }
+  .row:first-child .rank { color: var(--text); font-weight: 700; }
+  .who { display: flex; align-items: center; gap: 0; }
+  .avatar {
+    width: 68px; height: 68px; border-radius: 50%; object-fit: cover; background: #f0f0f0;
+    border-style: solid;
+  }
+  .fallback {
+    width: 68px; height: 68px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 18px; color: #fff; background: #909eb1;
+  }
+  .id .urna { margin: 0; font-size: 22px; line-height: 1.1; font-weight: 700; letter-spacing: -0.3px; }
+  .id .urna a { color: inherit; text-decoration: none; }
+  .id .urna a:hover { color: var(--blue); }
+  .id .civil { margin: 2px 0 0; color: var(--muted); font-size: 13px; }
+  .id .meta { margin: 3px 0 0; color: var(--muted); font-size: 13px; }
+  .chip {
+    display: inline-block; margin-left: 6px; vertical-align: 2px;
+    border: 1px solid var(--blue); color: var(--blue);
+    border-radius: 999px; padding: 0 7px; font-size: 11px; font-weight: 700;
+    letter-spacing: 0;
+  }
+  .metric .k { margin: 0; color: var(--muted); font-size: 12px; font-weight: 500; }
+  .metric .v {
+    margin: 1px 0 0;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-weight: 700; font-size: 26px; letter-spacing: -0.6px; line-height: 1.15;
+  }
+  .metric .note { margin: 1px 0 4px; min-height: 14px; color: var(--muted); font-size: 11px; }
+  .metric.side .v { font-size: 16px; letter-spacing: -0.3px; }
+  .metric.side .pct {
+    margin: 2px 0 0; font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 13px; font-weight: 500; color: var(--text); white-space: nowrap;
+  }
+  .metric.side .pct.zero { color: var(--muted); }
+  svg.spark { display: block; width: 100%; height: 46px; }
+  .empty { padding: 28px 22px 32px; color: var(--muted); }
+  footer {
+    margin: 14px 6px 0; color: var(--muted); font-size: 12px; line-height: 1.45;
+  }
+  footer a { color: var(--muted); }
+  @media (max-width: 980px) {
+    h1 { font-size: 22px; }
+    .head { flex-direction: column; }
+    .tools { width: 100%; }
+    input[type="search"] { flex: 1; width: auto; }
+    .row {
+      grid-template-columns: 28px 64px 1fr;
+      grid-template-areas: "rank photo id" "spark spark spark" "week week gasto";
+    }
+    .rank { grid-area: rank; }
+    .who { grid-area: photo; }
+    .id { grid-area: id; }
+    .m-rec { grid-area: spark; }
+    .m-week { grid-area: week; }
+    .m-gasto { grid-area: gasto; }
+    .avatar, .fallback { width: 56px; height: 56px; }
+    .metric .v { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <p class="brand"><b>DecideBrasil</b><span>Eleições 2026 · Presidente</span><a href="index.html">Quem doa</a></p>
+  <article class="card">
+    <header class="head">
+      <div>
+        <h1 id="titulo"></h1>
+        <p class="sub" id="sub"></p>
+      </div>
+      <div class="tools">
+        <label class="sort">
+          <span>Ordenar</span>
+          <select id="ordem" aria-label="Ordenar a lista">
+            <option value="receita">Arrecadação</option>
+            <option value="semana">Últimos 7 dias</option>
+            <option value="gasto">Gasto contratado</option>
+            <option value="teto">% do teto</option>
+          </select>
+          <button type="button" class="dir" id="direcao" aria-pressed="true" aria-label="Ordem decrescente">↓</button>
+        </label>
+        <input id="busca" type="search" placeholder="Buscar" aria-label="Buscar candidato" />
+      </div>
+    </header>
+    <div class="rows" id="rows"></div>
+  </article>
+  <footer id="fonte"></footer>
+</div>
+<script id="dados" type="application/json">{"gerado": "17/10/2026", "hora": "04:05", "de": "10/08/2026", "ate": "17/10/2026", "semanaDe": "11/10/2026", "total": 227569673.68, "top2": 86.7, "candidatos": [{"sq": "280002542548", "urna": "Lula", "nome": "Luiz Inácio Lula da Silva", "partido": "PT", "numero": "13", "cor": "#EF4444", "foto": "https://d28e1s3vmdjm2r.cloudfront.net/Candidatos2026/Lula_da_Silva2.jpg", "segundo": true, "receita": 108338992.9, "financeiro": 108043687.26, "estimavel": 295305.64, "fonte": "97% do partido", "semana": 456394.74, "gasto": 65416749.96, "teto": 133400000, "tetoRotulo": "2º turno", "serie": [0.0, 5000.0, 5000.0, 5000.0, 20000.0, 20000.0, 248301.48, 263768.14, 414268.14, 429268.14, 429268.14, 444268.14, 444268.14, 444268.14, 35444368.14, 35444483.14, 35558503.14, 35558603.14, 35573623.14, 35573623.14, 35573623.14, 35580628.14, 35583678.14, 35583678.14, 35583678.14, 36198937.14, 36198937.14, 36198937.14, 36202687.14, 36224000.64, 41245613.77, 41279613.9, 41292918.9, 41292918.9, 41292918.9, 41423740.03, 41537040.03, 56602995.12, 56655345.22, 56774285.22, 56774285.22, 56774285.22, 57046721.39, 57124068.39, 67186640.52, 67236940.52, 67274850.65, 67274850.65, 67274850.65, 67514484.98, 77552294.15, 77596044.19, 87616394.19, 87629899.19, 87629899.19, 87629899.19, 87868502.51, 87868502.51, 87868548.16, 107870548.16, 107882598.16, 107882598.16, 107882598.16, 108335448.53, 108338991.66, 108338991.66, 108338992.9, 108338992.9, 108338992.9], "url": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/BR/BR/20322002026/280002542548/2026/BR"}, {"sq": "280002551544", "urna": "Flávio Bolsonaro", "nome": "Flávio Nantes Bolsonaro", "partido": "PL", "numero": "22", "cor": "#266FE0", "foto": "https://d28e1s3vmdjm2r.cloudfront.net/Candidatos2026/Flavio_Bolsonaro2.jpg", "segundo": true, "receita": 88952028.52, "financeiro": 82672787.52, "estimavel": 6279241.0, "fonte": "76% do partido", "semana": 10950921.44, "gasto": 68951261.4, "teto": 133400000, "tetoRotulo": "2º turno", "serie": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 102000.0, 102000.0, 102000.0, 102000.0, 102000.0, 102000.0, 102000.01, 42102006.01, 42163007.4, 42413017.66, 43313392.01, 43382394.01, 43382394.01, 43382394.01, 43432988.9, 43734689.98, 43800774.53, 43935637.12, 47746859.34, 47748859.34, 47748859.34, 47748859.44, 47869622.99, 48171622.99, 48171808.2, 48271862.56, 48271862.56, 48271862.56, 48481766.55, 56077010.77, 56177510.77, 56205010.77, 56440010.91, 56440010.91, 56440010.91, 56729605.35, 56902605.35, 58151335.71, 58751535.71, 59662021.44, 59662021.44, 59662021.44, 59817209.44, 61750633.85, 61890683.07, 62046994.07, 68698545.42, 68698545.42, 68698545.42, 68868742.61, 72822704.12, 73023705.34, 77634776.12, 78001107.08, 78001107.08, 78001107.08, 78001107.08, 81547152.69, 84952658.5, 88937028.52, 88952028.52, 88952028.52], "url": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/BR/BR/20322002026/280002551544/2026/BR"}, {"sq": "280002551932", "urna": "Ronaldo Caiado", "nome": "Ronaldo Ramos Caiado", "partido": "PSD", "numero": "55", "cor": "#184D9B", "foto": "https://d28e1s3vmdjm2r.cloudfront.net/Candidatos2026/Ronaldo_Caiado2.jpg", "segundo": false, "receita": 13353255.74, "financeiro": 13107970.74, "estimavel": 245285.0, "fonte": "80% do partido", "semana": 0.0, "gasto": 22055406.5, "teto": 88900000, "tetoRotulo": "1º turno", "serie": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 225000.0, 225000.0, 225000.0, 825000.0, 825000.0, 825000.0, 825000.0, 825000.0, 825000.0, 1575000.0, 2325000.0, 2325000.0, 2325000.0, 3125000.0, 4125000.0, 4125000.0, 4125000.0, 6635000.0, 6635000.0, 6635000.0, 6635000.0, 6635000.0, 6635000.0, 9510000.0, 9510000.0, 9510000.0, 9510000.0, 9510000.0, 9510000.0, 9510000.0, 9856000.0, 9856000.0, 9856000.0, 9856000.0, 9856000.0, 9856000.0, 9867200.0, 9867200.0, 9867200.0, 9867200.0, 9867200.0, 13176292.74, 13189170.74, 13190970.74, 13190970.74, 13198255.74, 13198255.74, 13198255.74, 13198255.74, 13198255.74, 13198255.74, 13198255.74, 13353255.74, 13353255.74, 13353255.74, 13353255.74, 13353255.74, 13353255.74, 13353255.74, 13353255.74, 13353255.74], "url": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/BR/BR/20322002026/280002551932/2026/BR"}, {"sq": "280002539826", "urna": "Romeu Zema", "nome": "Romeu Zema Neto", "partido": "NOVO", "numero": "30", "cor": "#EA580C", "foto": "https://d28e1s3vmdjm2r.cloudfront.net/Candidatos2026/Romeu_Zema2.jpg", "segundo": false, "receita": 5566339.88, "financeiro": 5470020.5, "estimavel": 96319.38, "fonte": "94% do partido", "semana": 0.0, "gasto": 5469277.95, "teto": 88900000, "tetoRotulo": "1º turno", "serie": [750000.0, 750000.0, 750000.0, 750000.0, 1750000.0, 1750000.0, 1750000.0, 2500000.0, 2700000.0, 2700000.0, 2700000.0, 2700000.0, 2700005.0, 2700005.0, 2700005.0, 2700005.0, 2709005.0, 2709005.0, 2759007.0, 2759007.0, 2759007.0, 2809007.0, 2809007.0, 2809557.0, 2892566.38, 3992566.38, 3996326.38, 3996326.38, 3996326.38, 3996328.38, 3996328.88, 4496328.88, 4496328.88, 4496328.88, 4496328.88, 4496329.88, 4496329.88, 4496329.88, 4496329.88, 4496329.88, 4496329.88, 4496329.88, 5296329.88, 5306329.88, 5406329.88, 5446329.88, 5446329.88, 5446329.88, 5446329.88, 5446339.88, 5446339.88, 5446339.88, 5446339.88, 5446339.88, 5446339.88, 5446339.88, 5446339.88, 5446339.88, 5446339.88, 5446339.88, 5566339.88, 5566339.88, 5566339.88, 5566339.88, 5566339.88, 5566339.88, 5566339.88, 5566339.88, 5566339.88], "url": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/BR/BR/20322002026/280002539826/2026/BR"}, {"sq": "280002551547", "urna": "Augusto Cury", "nome": "Augusto Jorge Cury", "partido": "AVANTE", "numero": "70", "cor": "#65A30D", "foto": "https://d28e1s3vmdjm2r.cloudfront.net/Candidatos2026/Augusto_Cury2.jpg", "segundo": false, "receita": 4315711.48, "financeiro": 1408619.84, "estimavel": 2907091.64, "fonte": "80% do partido", "semana": 40.0, "gasto": 1505891.13, "teto": 88900000, "tetoRotulo": "1º turno", "serie": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 40000.0, 166490.0, 270894.04, 271419.04, 271419.04, 346419.04, 346419.04, 421420.04, 980807.59, 980807.59, 1185382.59, 1187393.59, 1187393.59, 1197729.61, 1197729.61, 1552487.91, 1668033.6, 1680229.31, 2028153.13, 2528220.46, 2678530.46, 2678530.46, 2678530.46, 2782715.86, 2826565.86, 2963015.86, 2968915.86, 2968915.86, 2968915.86, 2968915.86, 2972465.86, 3072465.86, 3072465.86, 3188965.86, 3191215.86, 3191215.86, 3403515.86, 3404326.95, 3407026.95, 3407026.95, 3477026.95, 3735668.95, 3735668.95, 3744757.41, 3829522.41, 4152398.02, 4152398.02, 4157138.64, 4215638.64, 4215638.64, 4215638.64, 4315638.64, 4315638.64, 4315638.64, 4315671.48, 4315671.48, 4315671.48, 4315671.48, 4315671.48, 4315711.48, 4315711.48, 4315711.48, 4315711.48], "url": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/BR/BR/20322002026/280002551547/2026/BR"}, {"sq": "280002540694", "urna": "Renan Santos", "nome": "Renan Antonio Ferreira dos Santos", "partido": "MISSÃO", "numero": "14", "cor": "#909EB1", "foto": "https://d28e1s3vmdjm2r.cloudfront.net/Candidatos2026/Renan_Santos2.jpg", "segundo": false, "receita": 2815477.53, "financeiro": 2815477.53, "estimavel": 0.0, "fonte": "88% de vaquinha", "semana": 14.0, "gasto": 1288625.19, "teto": 88900000, "tetoRotulo": "1º turno", "serie": [0.0, 1037496.28, 1240289.0, 1240289.0, 1240289.0, 1240337.02, 1254043.78, 1254810.49, 1275971.04, 1298528.49, 1300636.41, 1301042.85, 1302931.58, 1303251.29, 1308607.99, 1308778.03, 1309323.8, 1310140.07, 1310779.7, 1311628.5, 1312677.66, 1355555.28, 1356817.72, 1454832.92, 1460058.53, 1465094.67, 1468328.8, 1470157.14, 1476532.89, 1921409.78, 1923657.62, 1975230.28, 2155076.67, 2155223.68, 2157714.24, 2246567.16, 2247855.06, 2250497.75, 2252676.47, 2364098.59, 2364557.03, 2366341.17, 2514618.43, 2515532.43, 2515667.43, 2516288.71, 2517008.99, 2518659.99, 2519377.12, 2690130.31, 2690130.31, 2716730.73, 2717576.75, 2719185.93, 2719263.93, 2719772.97, 2815373.31, 2815373.31, 2815383.31, 2815413.53, 2815463.53, 2815463.53, 2815463.53, 2815477.53, 2815477.53, 2815477.53, 2815477.53, 2815477.53, 2815477.53], "url": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/BR/BR/20322002026/280002540694/2026/BR"}, {"sq": "280002552484", "urna": "Clariana Barão", "nome": "Clariana Zacarkim Barão", "partido": "DC", "numero": "27", "cor": "#909EB1", "foto": "https://d28e1s3vmdjm2r.cloudfront.net/Candidatos2026/Clariana_Brandao2.jpg", "segundo": false, "receita": 1513500.0, "financeiro": 1507500.0, "estimavel": 6000.0, "fonte": "99% do partido", "semana": 0.0, "gasto": 998569.68, "teto": 88900000, "tetoRotulo": "1º turno", "serie": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 5000.0, 5000.0, 5000.0, 7500.0, 7500.0, 7500.0, 1507500.0, 1507500.0, 1507500.0, 1507500.0, 1513500.0, 1513500.0, 1513500.0, 1513500.0, 1513500.0, 1513500.0, 1513500.0, 1513500.0, 1513500.0, 1513500.0, 1513500.0, 1513500.0, 1513500.0, 1513500.0, 1513500.0, 1513500.0, 1513500.0, 1513500.0, 1513500.0, 1513500.0, 1513500.0, 1513500.0, 1513500.0, 1513500.0, 1513500.0, 1513500.0, 1513500.0, 1513500.0, 1513500.0, 1513500.0, 1513500.0, 1513500.0, 1513500.0, 1513500.0, 1513500.0, 1513500.0, 1513500.0, 1513500.0, 1513500.0, 1513500.0, 1513500.0, 1513500.0, 1513500.0, 1513500.0, 1513500.0, 1513500.0, 1513500.0, 1513500.0, 1513500.0], "url": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/BR/BR/20322002026/280002552484/2026/BR"}, {"sq": "280002541457", "urna": "Hertz Dias", "nome": "Hertz da Conceição Dias", "partido": "PSTU", "numero": "16", "cor": "#909EB1", "foto": "https://d28e1s3vmdjm2r.cloudfront.net/Candidatos2026/Hertz_Dias2.jpg", "segundo": false, "receita": 1144802.16, "financeiro": 1093592.16, "estimavel": 51210.0, "fonte": "94% do partido", "semana": 0.0, "gasto": 1051960.09, "teto": 88900000, "tetoRotulo": "1º turno", "serie": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 3000.0, 4500.0, 607500.0, 607500.0, 607500.16, 607500.16, 607500.16, 607500.16, 607500.16, 607500.16, 607500.16, 607500.16, 607500.16, 607500.16, 607500.16, 607500.16, 1082389.16, 1082389.16, 1082389.16, 1082389.16, 1082389.16, 1082389.16, 1082389.16, 1082389.16, 1082389.16, 1082389.16, 1082389.16, 1082389.16, 1082389.16, 1082389.16, 1082389.16, 1082389.16, 1082599.16, 1087584.16, 1087584.16, 1087584.16, 1087594.16, 1135594.16, 1142094.16, 1142094.16, 1144802.16, 1144802.16, 1144802.16, 1144802.16, 1144802.16, 1144802.16, 1144802.16, 1144802.16, 1144802.16, 1144802.16, 1144802.16, 1144802.16, 1144802.16, 1144802.16, 1144802.16, 1144802.16], "url": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/BR/BR/20322002026/280002541457/2026/BR"}, {"sq": "280002548139", "urna": "Wilson Grassi", "nome": "Wilson Grassi Júnior", "partido": "DEMOCRATA", "numero": "35", "cor": "#909EB1", "foto": "https://d28e1s3vmdjm2r.cloudfront.net/Candidatos2026/Wilson_Grassi2.jpg", "segundo": false, "receita": 1078710.0, "financeiro": 1077510.0, "estimavel": 1200.0, "fonte": "100% do próprio bolso", "semana": 0.0, "gasto": 1075873.66, "teto": 88900000, "tetoRotulo": "1º turno", "serie": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 180000.0, 290000.0, 290000.0, 290000.0, 290000.0, 290000.0, 310000.0, 310000.0, 310000.0, 320000.0, 345000.0, 365000.0, 375000.0, 385000.0, 385000.0, 385150.0, 385150.0, 405150.0, 405150.0, 415150.0, 415150.0, 415150.0, 425150.0, 425150.0, 446350.0, 446350.0, 566350.0, 566350.0, 676350.0, 696350.0, 716350.0, 716350.0, 741350.0, 761350.0, 781350.0, 781350.0, 801350.0, 811350.0, 821350.0, 851350.0, 851350.0, 871360.0, 931360.0, 971360.0, 1051360.0, 1051710.0, 1051710.0, 1051710.0, 1051710.0, 1078710.0, 1078710.0, 1078710.0, 1078710.0, 1078710.0, 1078710.0, 1078710.0, 1078710.0, 1078710.0, 1078710.0, 1078710.0, 1078710.0, 1078710.0], "url": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/BR/BR/20322002026/280002548139/2026/BR"}, {"sq": "280002538811", "urna": "Samara Martins", "nome": "Samara Martins da Silva Feitosa", "partido": "UP", "numero": "80", "cor": "#909EB1", "foto": "https://d28e1s3vmdjm2r.cloudfront.net/Candidatos2026/Samara_Martins2.jpg", "segundo": false, "receita": 443921.94, "financeiro": 282220.0, "estimavel": 161701.94, "fonte": "81% do partido", "semana": 0.0, "gasto": 647448.76, "teto": 88900000, "tetoRotulo": "1º turno", "serie": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 79895.0, 79895.0, 79895.0, 79895.0, 79895.0, 79895.0, 79895.0, 79895.0, 79895.0, 79895.0, 82220.0, 82220.0, 82220.0, 82220.0, 320397.28, 320397.28, 320397.28, 320397.28, 343721.94, 383721.94, 427971.94, 443921.94, 443921.94, 443921.94, 443921.94, 443921.94, 443921.94, 443921.94, 443921.94, 443921.94, 443921.94, 443921.94, 443921.94, 443921.94, 443921.94, 443921.94, 443921.94, 443921.94, 443921.94, 443921.94, 443921.94, 443921.94, 443921.94, 443921.94, 443921.94, 443921.94, 443921.94, 443921.94, 443921.94, 443921.94, 443921.94, 443921.94, 443921.94, 443921.94, 443921.94, 443921.94, 443921.94, 443921.94], "url": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/BR/BR/20322002026/280002538811/2026/BR"}, {"sq": "280002551975", "urna": "Edmilson Costa", "nome": "Edmilson Silva Costa", "partido": "PCB", "numero": "21", "cor": "#909EB1", "foto": "https://d28e1s3vmdjm2r.cloudfront.net/Candidatos2026/Edmilson_Costa2.jpg", "segundo": false, "receita": 28816.0, "financeiro": 28816.0, "estimavel": 0.0, "fonte": "51% de vaquinha", "semana": 0.0, "gasto": 26619.21, "teto": 88900000, "tetoRotulo": "1º turno", "serie": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 13171.0, 13171.0, 13171.0, 13171.0, 13171.0, 13171.0, 13171.0, 13171.0, 13921.0, 18961.0, 18961.0, 18961.0, 18961.0, 19961.0, 19961.0, 20891.0, 20891.0, 20891.0, 20891.0, 20891.0, 22891.0, 22891.0, 23891.0, 23891.0, 23891.0, 23891.0, 25341.0, 25441.0, 26071.0, 26071.0, 26211.0, 26211.0, 26211.0, 26221.0, 27171.0, 27171.0, 27171.0, 27171.0, 27171.0, 28816.0, 28816.0, 28816.0, 28816.0, 28816.0, 28816.0, 28816.0, 28816.0, 28816.0, 28816.0, 28816.0, 28816.0, 28816.0, 28816.0], "url": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/BR/BR/20322002026/280002551975/2026/BR"}, {"sq": "280002553884", "urna": "Pablo Marçal", "nome": "Pablo Henrique Costa Marçal", "partido": "PRTB", "numero": "28", "cor": "#c98500", "foto": "https://d28e1s3vmdjm2r.cloudfront.net/Candidatos2026/Pablo_Marc%CC%A7al.jpg", "segundo": false, "receita": 9621.53, "financeiro": 9621.53, "estimavel": 0.0, "fonte": "100% de pessoas físicas", "semana": 0.0, "gasto": 0.0, "teto": 88900000, "tetoRotulo": "1º turno", "serie": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 5328.85, 9621.53, 9621.53, 9621.53, 9621.53, 9621.53, 9621.53, 9621.53, 9621.53, 9621.53, 9621.53, 9621.53, 9621.53, 9621.53, 9621.53, 9621.53, 9621.53, 9621.53, 9621.53, 9621.53, 9621.53, 9621.53, 9621.53, 9621.53, 9621.53, 9621.53, 9621.53, 9621.53, 9621.53, 9621.53, 9621.53, 9621.53, 9621.53, 9621.53, 9621.53, 9621.53, 9621.53, 9621.53, 9621.53, 9621.53, 9621.53, 9621.53, 9621.53, 9621.53, 9621.53, 9621.53, 9621.53, 9621.53, 9621.53, 9621.53, 9621.53, 9621.53, 9621.53, 9621.53, 9621.53, 9621.53, 9621.53, 9621.53, 9621.53, 9621.53], "url": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/BR/BR/20322002026/280002553884/2026/BR"}, {"sq": "280002552487", "urna": "Rui Costa Pimenta", "nome": "Rui Costa Pimenta", "partido": "PCO", "numero": "29", "cor": "#909EB1", "foto": "https://d28e1s3vmdjm2r.cloudfront.net/Candidatos2026/Rui_Costa_Pimenta2.jpg", "segundo": false, "receita": 8496.0, "financeiro": 8496.0, "estimavel": 0.0, "fonte": "100% de vaquinha", "semana": 0.0, "gasto": 250.49, "teto": 88900000, "tetoRotulo": "1º turno", "serie": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 6271.0, 6271.0, 6271.0, 6271.0, 6271.0, 6271.0, 6271.0, 6271.0, 6271.0, 6271.0, 6271.0, 6271.0, 6271.0, 6271.0, 6271.0, 6271.0, 6271.0, 6271.0, 6271.0, 6271.0, 6271.0, 6271.0, 6271.0, 6271.0, 6271.0, 6271.0, 8496.0, 8496.0, 8496.0, 8496.0, 8496.0, 8496.0, 8496.0, 8496.0, 8496.0, 8496.0, 8496.0, 8496.0, 8496.0, 8496.0, 8496.0, 8496.0, 8496.0, 8496.0, 8496.0, 8496.0], "url": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/BR/BR/20322002026/280002552487/2026/BR"}]}</script>
+<script>
+const DATA = JSON.parse(document.getElementById("dados").textContent);
+const ordemEl = document.getElementById("ordem");
+const dirEl = document.getElementById("direcao");
+const buscaEl = document.getElementById("busca");
+let desc = true;
+
+function brl(n) {
+  const sign = n < 0 ? "−" : "";
+  const a = Math.abs(n);
+  if (a >= 1e6) {
+    return sign + "R$ " + (a / 1e6).toLocaleString("pt-BR", { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + " mi";
+  }
+  if (a >= 1000) {
+    const v = a / 1000;
+    const d = v >= 100 ? 0 : 1;
+    return sign + "R$ " + v.toLocaleString("pt-BR", { minimumFractionDigits: d, maximumFractionDigits: d }) + " mil";
+  }
+  if (a < 0.5) return "R$ 0";
+  return sign + "R$ " + a.toLocaleString("pt-BR", { maximumFractionDigits: 0 });
+}
+function pct1(n) {
+  return n.toLocaleString("pt-BR", { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + "%";
+}
+function variacao(semana, total) {
+  const prev = total - semana;
+  if (semana < 1000) return { texto: "0%", zero: true };
+  if (prev <= 0) return { texto: "—", zero: true };
+  const p = 100 * semana / prev;
+  if (p < 0.05) return { texto: "0%", zero: true };
+  return { texto: "+" + pct1(p), zero: false };
+}
+function tetoPct(c) {
+  if (!c.teto) return "—";
+  const p = 100 * c.gasto / c.teto;
+  const s = p >= 10
+    ? p.toLocaleString("pt-BR", { maximumFractionDigits: 0 })
+    : p.toLocaleString("pt-BR", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+  const cap = c.segundo ? "133 mi" : "88,9 mi";
+  return s + "% de " + cap;
+}
+function spark(serie) {
+  const w = 240, h = 46, pad = 4;
+  const max = Math.max(...serie, 0);
+  const n = serie.length;
+  if (max <= 0) {
+    return '<svg class="spark" viewBox="0 0 ' + w + ' ' + h + '" aria-hidden="true"><line x1="' + pad + '" y1="' + (h - pad) + '" x2="' + (w - pad) + '" y2="' + (h - pad) + '" stroke="#c8c8c8" stroke-width="1.75" stroke-linecap="round"/></svg>';
+  }
+  const pts = serie.map((v, i) => {
+    const x = pad + (i / (n - 1)) * (w - 2 * pad);
+    const y = h - pad - (v / max) * (h - 2 * pad);
+    return [x, y];
+  });
+  const d = pts.map((p, i) => (i ? "L" : "M") + p[0].toFixed(1) + "," + p[1].toFixed(1)).join("");
+  const last = pts[pts.length - 1];
+  return '<svg class="spark" viewBox="0 0 ' + w + ' ' + h + '" aria-hidden="true"><path d="' + d + '" fill="none" stroke="#3c3c3c" stroke-width="1.75" stroke-linejoin="round" stroke-linecap="round"/><circle cx="' + last[0].toFixed(1) + '" cy="' + last[1].toFixed(1) + '" r="3.2" fill="#3c3c3c"/></svg>';
+}
+function iniciais(nome) {
+  return nome.split(/\s+/).slice(0, 2).map(p => p[0]).join("").toUpperCase();
+}
+function linha(c, i) {
+  const chip = c.segundo ? '<span class="chip">2º turno</span>' : "";
+  const dinheiro = c.estimavel / Math.max(c.receita, 1) >= 0.05
+    ? brl(c.financeiro) + " em dinheiro"
+    : "";
+  const vari = variacao(c.semana, c.receita);
+  const semanaTxt = c.semana >= 1000 ? "+" + brl(c.semana) : brl(0);
+  return '<div class="row">'
+    + '<div class="rank">' + (i + 1) + '</div>'
+    + '<div class="who"><img class="avatar" style="border-width:3px;border-color:' + c.cor + '" src="' + c.foto + '" alt="" data-ini="' + iniciais(c.urna) + '" data-cor="' + c.cor + '"></div>'
+    + '<div class="id"><p class="urna"><a href="' + c.url + '" target="_blank" rel="noopener">' + c.urna + '</a>' + chip + '</p>'
+    + '<p class="civil">' + c.nome + '</p>'
+    + '<p class="meta">' + c.partido + ' · nº ' + c.numero + ' · ' + c.fonte + '</p></div>'
+    + '<div class="metric m-rec"><p class="k">Arrecadação</p><p class="v">' + brl(c.receita) + '</p><p class="note">' + dinheiro + '</p>' + spark(c.serie) + '</div>'
+    + '<div class="metric side m-week"><p class="k">Últimos 7 dias</p><p class="v">' + semanaTxt + '</p><p class="pct' + (vari.zero ? ' zero' : '') + '">' + vari.texto + '</p></div>'
+    + '<div class="metric side m-gasto"><p class="k">Gasto contratado</p><p class="v">' + brl(c.gasto) + '</p><p class="pct">' + tetoPct(c) + '</p></div>'
+    + '</div>';
+}
+function desenha() {
+  const q = buscaEl.value.trim().toLocaleLowerCase("pt-BR");
+  const key = ordemEl.value;
+  const lista = DATA.candidatos.filter(c => {
+    if (!q) return true;
+    const blob = (c.urna + " " + c.nome + " " + c.partido + " " + c.numero).toLocaleLowerCase("pt-BR");
+    return blob.includes(q);
+  });
+  const valor = c => key === "teto" ? c.gasto / c.teto : c[key];
+  lista.sort((a, b) => desc ? valor(b) - valor(a) : valor(a) - valor(b));
+  const box = document.getElementById("rows");
+  box.innerHTML = lista.length
+    ? lista.map(linha).join("")
+    : '<p class="empty">Nenhuma candidatura com esse nome, partido ou número.</p>';
+  box.querySelectorAll("img.avatar").forEach(img => {
+    img.addEventListener("error", () => {
+      const s = document.createElement("div");
+      s.className = "fallback";
+      s.style.background = img.dataset.cor;
+      s.textContent = img.dataset.ini;
+      img.replaceWith(s);
+    });
+  });
+}
+document.getElementById("titulo").textContent =
+  "Lula e Flávio declaram " + DATA.top2.toLocaleString("pt-BR", { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + "% do dinheiro da campanha presidencial.";
+document.getElementById("sub").textContent =
+  "Arrecadação declarada, de " + DATA.de + " a " + DATA.ate + ". A linha é o acumulado de cada campanha, na escala dela: mostra quando o dinheiro entrou, não o tamanho. O tamanho está no número.";
+document.getElementById("fonte").innerHTML =
+  "Fonte · TSE, prestação de contas eleitorais de candidatos 2026, arquivo gerado em " + DATA.gerado + " às " + DATA.hora +
+  ". Presidente, Brasil. Receitas idênticas contam uma vez. Nas despesas, se uma linha do mesmo lançamento é a soma das outras, fica só a soma. " +
+  "Últimos 7 dias: receita com data de " + DATA.semanaDe + " a " + DATA.ate + ", em relação ao que já havia entrado. Abaixo de R$ 1 mil na semana, a coluna mostra zero. " +
+  "Teto usado na conta: R$ 88,9 milhões no 1º turno e R$ 133,4 milhões para quem disputou o 2º, o valor arredondado que a imprensa registrou a partir do TSE. " +
+  "Contas parciais: a prestação final do 1º turno segue aberta até 3 de novembro. " +
+  '<a href="https://dadosabertos.tse.jus.br/dataset/prestacao-de-contas-eleitorais-2026">Dados abertos do TSE</a>. ' +
+  'Ficha de Lula no <a href="https://divulgacandcontas.tse.jus.br/divulga/#/candidato/BR/BR/20322002026/280002542548/2026/BR">DivulgaCand</a>.';
+ordemEl.addEventListener("change", desenha);
+buscaEl.addEventListener("input", desenha);
+dirEl.addEventListener("click", () => {
+  desc = !desc;
+  dirEl.textContent = desc ? "↓" : "↑";
+  dirEl.setAttribute("aria-pressed", desc ? "true" : "false");
+  dirEl.setAttribute("aria-label", desc ? "Ordem decrescente" : "Ordem crescente");
+  desenha();
+});
+desenha();
+</script>
+</body>
+</html>
